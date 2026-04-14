@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+
 
 class AppointmentController extends Controller
 {
@@ -12,7 +14,10 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-        //
+        // dd('fdjfkdj');
+        return Inertia::render('appointments/Index', [
+            'appointments' => 'kalksdls',
+        ]);
     }
 
     /**
@@ -20,7 +25,9 @@ class AppointmentController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('appointments/Create', [
+            'services' => 'hjhjhh',
+        ]);
     }
 
     /**
@@ -61,5 +68,12 @@ class AppointmentController extends Controller
     public function destroy(Appointment $appointment)
     {
         //
+    }
+    
+    public function schedule()
+    {
+        return Inertia::render('appointments/Schedule', [
+            
+        ]);
     }
 }

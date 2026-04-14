@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->foreignId('service_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('staff_id')->constrained('staff')->cascadeOnDelete();
+            $table->foreignId('staff_id')->constrained('staff')->cascadeOnDelete()->nullable();
             $table->date('appointment_date');
             $table->time('start_time');
             $table->time('end_time')->nullable();

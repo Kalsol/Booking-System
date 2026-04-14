@@ -14,7 +14,9 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { dashboard, appointments, services, staff, billing } from '@/routes';
+import { schedule } from '@/routes/appointments';
+
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -25,27 +27,27 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Appointments',
-        href: '/appointments',
+        href: appointments(),
         icon: BookOpen,
     },
     {
         title: 'Services',
-        href: '/services',
+        href: services(),
         icon: FolderGit2,
     },
     {
         title: 'Schedule',
-        href: '/schedule',
+        href: schedule(),
         icon: LayoutGrid,
     },
     {
         title: 'Staff Directory',
-        href: '/staff',
+        href: staff(),
         icon: FolderGit2,
     },
     {
         title: 'Billing and Invoices',
-        href: '/billing',
+        href: billing(),
         icon: FolderGit2,
     }
 ];
@@ -78,5 +80,5 @@ const footerNavItems: NavItem[] = [
             <NavUser />
         </SidebarFooter>
     </Sidebar>
-    <slot />
+        <slot />
 </template>
