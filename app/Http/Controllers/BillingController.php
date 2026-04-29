@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Billing;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+
 class BillingController extends Controller
 {
     /**

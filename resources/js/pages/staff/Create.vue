@@ -13,108 +13,108 @@ import {
     SelectValue 
 } from '@/components/ui/select';
 import { Spinner } from '@/components/ui/spinner';
-import { index, store } from '@/routes/services'
+import { index, store } from '@/routes/staff'
 
 defineOptions({
     layout: {
         breadcrumbs: [
-            { title: 'Services', href: index() },
+            { title: 'Staff', href: index() },
             { title: 'Create', href: '#' },
         ],
     },
 });
 
-interface Category {
+interface Roles {
     id: number;
     name: string;
 }
 
-const categories = ref<Category[]>([
+const role_title = ref<Roles[]>([
     {
         id: 1,
-        name: 'Videography'
+        name: 'Videographer'
     },
     {
         id: 2,
-        name: 'Photography'
+        name: 'Photographer'
     },
     {
         id: 3,
-        name: 'Weeding'
+        name: 'Editor'
     }
 ]);
 
 </script>
 <template>
-    <Head title="Create Service" />
+    <Head title="Create Staff" />
 
     <div class="flex flex-col">
         <p class="text-2xl font-semibold w-full text-left px-5 py-5">
-            Add New Service
+            Add New Staff
         </p>
         <p class="text-sm px-5 mb-6 text-muted-foreground">
-            Configure a new production package for the catalog.
+            Configure a new staff member for the catalog.
         </p>
     </div>
 
     <div class="flex h-full flex-1 flex-col gap-4 p-4 max-w-5xl">
         <div class="relative overflow-hidden rounded-2xl border border-sidebar-border/70 bg-card/50 p-8 shadow-sm backdrop-blur-md dark:border-sidebar-border/40">
             <div class="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-cyan-500/10 blur-2xl"></div>
-
             <Form v-bind="store.form()"
                 v-slot="{ errors, processing }"
                 class="space-y-8">
-                <div class="grid gap-6 md:grid-cols-2">
+                <div class="grid gap-2 md:grid-cols-3">
                     <div class="grid gap-2">
-                        <Label for="name">Service Name</Label>
+                        <Label for="name">Name</Label>
                         <Input
                             id="name"
                             name="name"
-                            placeholder="e.g. 4K Cinematic Music Video"
+                            placeholder="Kaleab Solomon"
                             required
                         />
                         <InputError :message="errors.name" />
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="category_id">Category</Label>
-                        <Select name="category_name" id="category_id">
+                        <Label for="category_id">Role Title</Label>
+                        <Select name="role_title" id="category_id">
                             <SelectTrigger>
-                                <SelectValue placeholder="Select Category" />
+                                <SelectValue placeholder="Select Role Title" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem 
-                                    v-for="category in categories" 
-                                    :key="category.id" 
-                                    :value="category.name" >
-                                    {{ category.name }}
+                                    v-for="role in role_title" 
+                                    :key="role.id" 
+                                    :value="role.name" >
+                                    {{ role.name }}
                                 </SelectItem>
                             </SelectContent>
                         </Select>
-                        <InputError :message="errors.category_name" />
+                        <InputError :message="errors.role_title" />
+                    </div>
+                    
+                    <div class="grid gap-2">
+                        <Label for="email">Email</Label>
+                        <Input
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="e.g. kaleab@example.com"
+                        />
+                        <InputError :message="errors.email" />
                     </div>
                 </div>
 
                 <div class="grid gap-6 md:grid-cols-3">
                     <div class="grid gap-2">
-                        <Label for="price">Price (Br)</Label>
+                        <Label for="salary">Salary</Label>
                         <Input
-                            id="price"
+                            id="salary"
                             type="number"
-                            name="price"
-                            placeholder="0.00"
+                            name="salary"
+                            placeholder="e.g. 50,000"
                         />
-                        <InputError :message="errors.price" />
-                    </div>
-
-                    <div class="grid gap-2">
-                        <Label for="duration">Duration</Label>
-                        <Input
-                            id="duration"
-                            name="duration"
-                            placeholder="e.g. 2 Days"
-                        />
-                        <InputError :message="errors.duration" />
+                        <InputError :message="errors.salary" />
                     </div>
 
                     <div class="grid gap-2">
@@ -133,14 +133,14 @@ const categories = ref<Category[]>([
                 </div>
 
                 <div class="grid gap-2">
-                    <Label for="description">Description</Label>
+                    <Label for="bio">Bio</Label>
                     <textarea
-                        id="description"
-                        name="description"
-                        placeholder="Provide details about the service inclusions..."
+                        id="bio"
+                        name="bio"
+                        placeholder="Provide details about the staff..."
                         class="w-full rounded-lg border border-sidebar-border bg-background/50 px-4 py-2 focus:ring-2 focus:ring-primary/50 outline-none resize-none"
                     />
-                    <InputError :message="errors.description" />
+                    <InputError :message="errors.bio" />
                 </div>
 
                 <div class="flex items-center justify-end gap-4 border-t border-sidebar-border/50 pt-6">

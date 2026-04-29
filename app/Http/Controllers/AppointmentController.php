@@ -6,7 +6,6 @@ use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-
 class AppointmentController extends Controller
 {
     /**
@@ -69,11 +68,11 @@ class AppointmentController extends Controller
     {
         //
     }
-    
+
     public function schedule()
     {
         return Inertia::render('appointments/Schedule', [
-            
+
         ]);
     }
 }

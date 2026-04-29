@@ -17,7 +17,7 @@ class Appointment extends Model
         'total_price',
         'notes',
     ];
-    
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);
@@ -32,5 +32,4 @@ class Appointment extends Model
     {
         return $this->belongsTo(Staff::class);
     }
-    
 }

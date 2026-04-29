@@ -15,7 +15,7 @@ class Payment extends Model
         'transaction_ref',
         'paid_at',
     ];
-    
+
     public function appointment()
     {
         return $this->belongsTo(Appointment::class);

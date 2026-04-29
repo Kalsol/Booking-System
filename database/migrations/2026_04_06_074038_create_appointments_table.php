@@ -23,7 +23,7 @@ return new class extends Migration
                 'pending',
                 'confirmed',
                 'completed',
-                'cancelled'
+                'cancelled',
             ])->default('pending');
             $table->decimal('total_price', 10, 2)->default(0);
             $table->text('notes')->nullable();

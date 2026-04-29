@@ -13,7 +13,7 @@ class Billing extends Model
         'status',
         'due_date',
     ];
-    
+
     public function appointment()
     {
         return $this->belongsTo(Appointment::class);

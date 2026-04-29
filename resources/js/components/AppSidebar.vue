@@ -14,8 +14,11 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard, appointments, services, staff, billing } from '@/routes';
+import { dashboard, appointments, billing } from '@/routes';
 import { schedule } from '@/routes/appointments';
+import { index as serviceIndex } from '@/routes/services';
+import { index as staffIndex } from '@/routes/staff';
+
 
 import type { NavItem } from '@/types';
 
@@ -32,7 +35,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Services',
-        href: services(),
+        href: serviceIndex(),
         icon: FolderGit2,
     },
     {
@@ -42,7 +45,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Staff Directory',
-        href: staff(),
+        href: staffIndex(),
         icon: FolderGit2,
     },
     {

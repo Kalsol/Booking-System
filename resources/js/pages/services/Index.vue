@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3'
+import { Head, Link, Form } from '@inertiajs/vue3'
 import { 
   Plus, 
   Video, 
@@ -12,7 +12,7 @@ import {
 } from 'lucide-vue-next';
 import { ref } from 'vue'
 import PlaceholderPattern from '@/components/PlaceholderPattern.vue';
-import { show, edit, destroy } from '@/routes/services'
+import { show, edit, destroy, create } from '@/routes/services'
 // State for tab switching
 const activeTab = ref('services');
 
@@ -58,7 +58,7 @@ const formatPrice = (price: string | number) => {
             <h1 class="text-2xl font-bold text-white">Services & Catalog</h1>
             <p class="text-sm text-slate-400">Manage your production packages and equipment inventory.</p>
         </div>
-        <Link href="services/create" class="bg-[#ffd700] hover:bg-[#ffd700]/90 text-black font-bold px-5 h-11 rounded-lg flex items-center transition-colors shadow-lg shadow-[#ffd700]/10">
+        <Link :href="create()" class="bg-[#ffd700] hover:bg-[#ffd700]/90 text-black font-bold px-5 h-11 rounded-lg flex items-center transition-colors shadow-lg shadow-[#ffd700]/10">
             <Plus class="mr-2 h-4 w-4" /> Add Service
         </Link>
     </div>
@@ -69,29 +69,25 @@ const formatPrice = (price: string | number) => {
             <button 
                 @click="activeTab = 'services'"
                 :class="[activeTab === 'services' ? 'text-[#ffd700] border-b-2 border-[#ffd700]' : 'text-slate-400 border-b-2 border-transparent']"
-                class="pb-3 text-sm font-semibold transition-all"
-            >
+                class="pb-3 text-sm font-semibold transition-all">
                 Production Services
             </button>
+            
             <button 
                 @click="activeTab = 'gear'"
                 :class="[activeTab === 'gear' ? 'text-[#ffd700] border-b-2 border-[#ffd700]' : 'text-slate-400 border-b-2 border-transparent']"
-                class="pb-3 text-sm font-semibold transition-all"
-            >
+                class="pb-3 text-sm font-semibold transition-all">
                 Equipment & Gear
             </button>
         </div>
 
         <div class="flex overflow-hidden relative min-h-[70vh] flex-1 rounded-xl border border-sidebar-border/70 bg-[#0d0e12] dark:border-sidebar-border">
             <PlaceholderPattern />
-
             <div v-if="activeTab === 'services'" class="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6 content-start">
-                
                 <div 
                     v-for="(item, index) in services" 
                     :key="index"
-                    class="group flex flex-col justify-between rounded-2xl border border-[#2e3039] bg-[#111218]/80 backdrop-blur-sm p-6 transition-all hover:border-[#ffd700]/40 shadow-lg"
-                >
+                    class="group flex flex-col justify-between rounded-2xl border border-[#2e3039] bg-[#111218]/80 backdrop-blur-sm p-6 transition-all hover:border-[#ffd700]/40 shadow-lg">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-[10px] font-black uppercase tracking-[2px] text-[#ffd700]">
@@ -136,10 +132,19 @@ const formatPrice = (price: string | number) => {
                             <Link :href="edit(item.id)" class="p-2 rounded-lg border border-[#2e3039] text-slate-400 hover:text-[#ffd700] hover:border-[#ffd700]/50 transition-all">
                                 <Edit2 :size="14" />
                             </Link>
-                            
-                            <button class="p-2 rounded-lg border border-[#2e3039] text-slate-400 hover:text-red-500 hover:border-red-500/50 transition-all">
-                                <Trash2 :size="14" />
-                            </button>
+                            <Form 
+                                :action="destroy(item.id)" 
+                                method="DELETE"
+                                confirm="Are you sure you want to delete this service?"
+                                v-slot="{ processing }">
+                                <button 
+                                    type="submit" 
+                                    :disabled="processing"
+                                    class="p-2 rounded-lg border border-[#2e3039] text-slate-400 hover:text-red-500 hover:border-red-500/50 transition-all flex items-center justify-center">
+                                    <Trash2 v-if="!processing" :size="14" />
+                                    <span v-else class="animate-spin text-[10px]">...</span>
+                                </button>
+                            </Form>
                         </div>
                     </div>
                 </div>

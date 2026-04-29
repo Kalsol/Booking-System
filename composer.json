@@ -15,6 +15,7 @@
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "laravel/wayfinder": "^0.1.14",
+        "openai-php/laravel": "*",
         "spatie/laravel-permission": "*"
     },
     "require-dev": {
@@ -24,7 +25,7 @@
         "laravel/sail": "^1.53",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.9",
-        "pestphp/pest": "^4.4",
+        "pestphp/pest": "*",
         "pestphp/pest-plugin-laravel": "^4.1"
     },
     "autoload": {
